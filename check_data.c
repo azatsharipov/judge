@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 void check_data()
+=======
+#include <stdio.h>
+#include <stdlib.h>
+#include <wait.h>
+#include <unistd.h>
+#include <dirent.h>
+
+int main(int argc, char* argv[])
+>>>>>>> 0937d54d4dc9589f4bbe6b7cd868707a32b0f4ee
 {
     freopen("data/info.txt", "w", stdout);
     int i, j, users_amount = 0, problems_amount = 0;
@@ -36,4 +46,8 @@ void check_data()
             printf("%02d ", j);
         printf("}\n");
     }
+<<<<<<< HEAD
+=======
+    return 0;
+>>>>>>> 0937d54d4dc9589f4bbe6b7cd868707a32b0f4ee
 }
