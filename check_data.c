@@ -1,14 +1,4 @@
-<<<<<<< HEAD
 void check_data()
-=======
-#include <stdio.h>
-#include <stdlib.h>
-#include <wait.h>
-#include <unistd.h>
-#include <dirent.h>
-
-int main(int argc, char* argv[])
->>>>>>> 0937d54d4dc9589f4bbe6b7cd868707a32b0f4ee
 {
     freopen("data/info.txt", "w", stdout);
     int i, j, users_amount = 0, problems_amount = 0;
@@ -37,6 +27,7 @@ int main(int argc, char* argv[])
     for(i = 1; i <= users_amount; i++)
     {
         printf("user%02d { ", i);
+        user_number[9] = i / 10 + '0';
         user_number[10] = i + '0';
         dir = opendir(user_number);
         problems_amount = 0; /* счетчик для кол-ва задач */
@@ -46,8 +37,4 @@ int main(int argc, char* argv[])
             printf("%02d ", j);
         printf("}\n");
     }
-<<<<<<< HEAD
-=======
-    return 0;
->>>>>>> 0937d54d4dc9589f4bbe6b7cd868707a32b0f4ee
 }
