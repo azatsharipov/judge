@@ -8,7 +8,6 @@ void check_test()
     while (readdir(dir) != NULL)
         problems_amount++;
     problems_amount -= 3;
-    problems_amount -= 2;
     closedir(dir);
     printf("%d\n", problems_amount); /* вывод кол-ва задач */
     /* строка с номером задачи */
@@ -28,7 +27,6 @@ void check_test()
         problem_number[6] = i + '0';
         dir = opendir(problem_number);
         tests_amount = 0; /* счетчик для кол-ва тестов */
-        tests_amount = 0; /* счетчик для номера теста */
         while (readdir(dir) != NULL)
             tests_amount++;
         for(j = 1; j < tests_amount / 2; j++)

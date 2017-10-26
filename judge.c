@@ -9,30 +9,39 @@
 
 int main()
 {
-    int pid, user, problem, users_amount, problems_amount;
-    char *user_number = NULL;
-    char *problem_number = NULL;
+    int pid, user, problem, users_amount;
     char *text = NULL;
-    user_number = (char*)malloc(sizeof(char) * 6);
-    user_number[0] = 'u';
-    user_number[1] = 's';
-    user_number[2] = 'e';
-    user_number[3] = 'r';
-    user_number[4] = '0';
-    user_number[5] = '0';
-    problem_number = (char*)malloc(sizeof(char) * 4);
+    char *problem_number = NULL;
+    problem_number = (char*)malloc(sizeof(char) * 2);
     problem_number[0] = '0';
     problem_number[1] = '0';
-    problem_number[2] = '.';
-    problem_number[3] = 'c';
+    char *one_string = NULL;
+    one_string = (char*)malloc(sizeof(char) * 16);
+    one_string[0] = 'd';
+    one_string[1] = 'a';
+    one_string[2] = 't';
+    one_string[3] = 'a';
+    one_string[4] = '/';
+    one_string[5] = 'u';
+    one_string[6] = 's';
+    one_string[7] = 'e';
+    one_string[8] = 'r';
+    one_string[9] = '0';
+    one_string[10] = '0';
+    one_string[11] = '/';
+    one_string[12] = '0';
+    one_string[13] = '0';
+    one_string[14] = '.';
+    one_string[15] = 'c';
     check_data();
     check_test();
+
     freopen("data/info.txt", "r", stdin);
     scanf("%d", &users_amount);
     for(user = 1; user <= users_amount; user++)
     {
-        user_number[4] = user / 10 + '0';
-        user_number[5] = user + '0';
+        one_string[9] = user / 10 + '0';
+        one_string[10] = user + '0';
         scanf("%s%s%s", text, text, text);
         problem = 1;
 //      for(problem = 1; problem <= problems_amount; problem++)
@@ -41,8 +50,11 @@ int main()
             pid = fork();
             if(!pid)
             {
+                problem_number[0] = problem / 10 + '0';
                 problem_number[1] = problem + '0';
-                execlp("./judge_unit", "./judge_unit", user_number, problem_number, NULL);
+                one_string[12] = problem / 10 + '0';
+                one_string[13] = problem + '0';
+                execlp("./judge_unit", "./judge_unit", one_string, problem_number, NULL);
                 printf("error\n");
                 return 0;
             }

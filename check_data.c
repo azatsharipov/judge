@@ -33,7 +33,7 @@ void check_data()
         problems_amount = 0; /* счетчик для кол-ва задач */
         while (readdir(dir) != NULL)
             problems_amount++;
-        for(j = 1; j < problems_amount; j++)
+        for(j = 1; j <= problems_amount - 2; j++)
             printf("%02d ", j);
         printf("}\n");
     }
