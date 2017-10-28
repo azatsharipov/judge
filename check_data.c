@@ -1,6 +1,7 @@
 void check_data()
 {
-    freopen("data/info.txt", "w", stdout);
+    FILE *file;
+    file = fopen("data/info.txt", "w");
     int i, j, users_amount = 0, problems_amount = 0;
     char* user_number = NULL;
     /* считаем кол-во пользователей */
@@ -9,7 +10,7 @@ void check_data()
         users_amount++;
     users_amount -= 3;
     closedir(dir);
-    printf("%d\n", users_amount); /* вывод кол-ва пользователей */
+    fprintf(file, "%d\n", users_amount); /* вывод кол-ва пользователей */
     /* строка с номером задачи */
     user_number = (char*)malloc(sizeof(char) * 11);
     user_number[0] = 'd';
@@ -26,15 +27,17 @@ void check_data()
     /* обрабатываем каждого пользователя */
     for(i = 1; i <= users_amount; i++)
     {
-        printf("user%02d { ", i);
+        fprintf(file, "user%02d { ", i);
         user_number[9] = i / 10 + '0';
         user_number[10] = i + '0';
         dir = opendir(user_number);
         problems_amount = 0; /* счетчик для кол-ва задач */
         while (readdir(dir) != NULL)
             problems_amount++;
+        closedir(dir);
         for(j = 1; j <= problems_amount - 2; j++)
-            printf("%02d ", j);
-        printf("}\n");
+            fprintf(file, "%02d ", j);
+        fprintf(file, "}\n");
     }
+    fclose(file);
 }

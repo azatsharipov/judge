@@ -10,7 +10,7 @@
 int main()
 {
     int pid, user, problem, users_amount;
-    char *text = NULL;
+    char text[10];
     char *problem_number = NULL;
     problem_number = (char*)malloc(sizeof(char) * 2);
     problem_number[0] = '0';

@@ -1,6 +1,8 @@
 void check_test()
 {
-    freopen("test/info.txt", "w", stdout);
+    FILE * file;
+//    freopen("test/info.txt", "w", stdout);
+    file = fopen("test/info.txt", "w");
     int i, j, problems_amount = 0, tests_amount = 0;
     char* problem_number = NULL;
     /* считаем кол-во задач */
@@ -9,7 +11,7 @@ void check_test()
         problems_amount++;
     problems_amount -= 3;
     closedir(dir);
-    printf("%d\n", problems_amount); /* вывод кол-ва задач */
+    fprintf(file, "%d\n", problems_amount); /* вывод кол-ва задач */
     /* строка с номером задачи */
     problem_number = (char*)malloc(sizeof(char) * 7);
     problem_number[0] = 't';
@@ -22,15 +24,17 @@ void check_test()
     /* обрабатываем каждую задачу */
     for(i = 1; i <= problems_amount; i++)
     {
-        printf("%02d { ", i);
+        fprintf(file, "%02d { ", i);
         problem_number[5] = i / 10 + '0';
         problem_number[6] = i + '0';
         dir = opendir(problem_number);
         tests_amount = 0; /* счетчик для кол-ва тестов */
         while (readdir(dir) != NULL)
             tests_amount++;
+        closedir(dir);
         for(j = 1; j < tests_amount / 2; j++)
-            printf("%03d ", j);
-        printf("}\n");
+            fprintf(file, "%03d ", j);
+        fprintf(file, "}\n");
     }
+    fclose(file);
 }
