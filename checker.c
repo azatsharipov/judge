@@ -10,20 +10,23 @@ main(int argc, char* argv[])
     if (file == NULL)
         return 0;
 
-    int ch1, ch2, flag = 0;
+    int ch1, ch2, flag = 1;
     while ((ch1 = fgetc(file)) != EOF)
     {
         ch2 = getchar();
         if (ch1 != ch2)
         {
-            flag = 1;
+            flag = 0;
             break;
         }
     }
     fclose(file);
-    if (flag == 0)
+/*    if (flag)
         printf("same\n");
-    if (flag == 1)
-        printf("wrong ans\n");
+	else
+        printf("wrong ans\n");*/
+	file = fopen(argv[2], "w");
+	fprintf(file, "%d ", (flag));
+	fclose(file);
     return 0;
 }

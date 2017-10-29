@@ -13,8 +13,8 @@ main (int argc, char **argv)
     int fd;
     int pid, pid1, pid2;
 //    char * text = NULL;
-    char text[10];
-    int digit;
+    char text[10], result;
+    int digit, ans;
     char * test_number_dat = NULL;
     char * test_number_ans = NULL;
     test_number_dat = (char*)malloc(sizeof(char) * 15);
@@ -108,7 +108,7 @@ main (int argc, char **argv)
             test_number_ans[8] = text[0];
             test_number_ans[9] = text[1];
             test_number_ans[10] = text[2];
-            execlp("./checker", "./checker", test_number_ans, NULL);
+            execlp("./checker", "./checker", test_number_ans, "results.txt", NULL);
             exit(1);
         }
         close(prog_checker[0]);
@@ -118,5 +118,16 @@ main (int argc, char **argv)
         fscanf(file, "%s", text);
     }
     fclose(file);
+	file = fopen("results.txt", "r");
+	ans = 0;
+	while(fscanf(file, "%d", &digit) != EOF)
+	{
+		if(digit == 1)
+			ans++;
+	}
+	fclose(file);
+	file = fopen("results.txt", "w");
+	fprintf(file, "%d\n", ans);
+	fclose(file);
     return 0;
 }
