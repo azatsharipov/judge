@@ -25,7 +25,7 @@ main(int argc, char* argv[])
         printf("same\n");
 	else
         printf("wrong ans\n");*/
-	file = fopen(argv[2], "w");
+	file = fopen(argv[2], "a");
 	fprintf(file, "%d ", (flag));
 	fclose(file);
     return 0;

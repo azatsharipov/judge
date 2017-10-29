@@ -69,6 +69,9 @@ main (int argc, char **argv)
     }
 
 
+	file = fopen("results.txt", "w");
+	fprintf(file, "%d", 0);
+    fclose(file);
 //    freopen("test/info.txt", "r", stdin);
     file = fopen("test/info.txt", "r");
     fscanf(file, "%d", &digit);
