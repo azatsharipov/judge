@@ -8,6 +8,7 @@
 int
 main (int argc, char **argv)
 {
+    FILE *file;
     int prog_checker[2];
     int fd;
     int pid, pid1, pid2;
@@ -68,14 +69,15 @@ main (int argc, char **argv)
     }
 
 
-    freopen("test/info.txt", "r", stdin);
-    scanf("%d", &digit);
+//    freopen("test/info.txt", "r", stdin);
+    file = fopen("test/info.txt", "r");
+    fscanf(file, "%d", &digit);
     while(strcmp(text, argv[2]))
     {
-        scanf("%s", text);
+        fscanf(file, "%s", text);
     }
-    scanf("%s", text);
-    scanf("%s", text);
+    fscanf(file, "%s", text);
+    fscanf(file, "%s", text);
 
 
     while(strcmp(text, "}"))
@@ -113,8 +115,8 @@ main (int argc, char **argv)
         close(prog_checker[1]);
         wait(NULL);
         wait(NULL);
-        scanf("%s", text);
+        fscanf(file, "%s", text);
     }
-
+    fclose(file);
     return 0;
 }

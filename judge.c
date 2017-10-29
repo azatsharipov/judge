@@ -9,6 +9,7 @@
 
 int main()
 {
+    FILE *file;
     int pid, user, problem, users_amount;
     char text[10];
     char *problem_number = NULL;
@@ -36,13 +37,14 @@ int main()
     check_data();
     check_test();
 
-    freopen("data/info.txt", "r", stdin);
-    scanf("%d", &users_amount);
+//    freopen("data/info.txt", "r", stdin);
+    file = fopen("data/info.txt", "r");
+    fscanf(file, "%d", &users_amount);
     for(user = 1; user <= users_amount; user++)
     {
         one_string[9] = user / 10 + '0';
         one_string[10] = user + '0';
-        scanf("%s%s%s", text, text, text);
+        fscanf(file, "%s%s%s", text, text, text);
         problem = 1;
 //      for(problem = 1; problem <= problems_amount; problem++)
         while(strcmp(text, "}"))
@@ -60,8 +62,9 @@ int main()
             }
             wait(NULL);
             problem++;
-            scanf("%s", text);
+            fscanf(file, "%s", text);
         }
     }
+    fclose(file);
     return 0;
 }
