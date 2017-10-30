@@ -69,9 +69,10 @@ main (int argc, char **argv)
     }
 
 
-	file = fopen("results.txt", "w");
+	file = fopen("tmp.txt", "w");
 	fprintf(file, "%d", 0);
     fclose(file);
+
 //    freopen("test/info.txt", "r", stdin);
     file = fopen("test/info.txt", "r");
     fscanf(file, "%d", &digit);
@@ -111,7 +112,7 @@ main (int argc, char **argv)
             test_number_ans[8] = text[0];
             test_number_ans[9] = text[1];
             test_number_ans[10] = text[2];
-            execlp("./checker", "./checker", test_number_ans, "results.txt", NULL);
+            execlp("./checker", "./checker", test_number_ans, "tmp.txt", NULL);
             exit(1);
         }
         close(prog_checker[0]);
@@ -121,7 +122,7 @@ main (int argc, char **argv)
         fscanf(file, "%s", text);
     }
     fclose(file);
-	file = fopen("results.txt", "r");
+	file = fopen("tmp.txt", "r");
 	ans = 0;
 	while(fscanf(file, "%d", &digit) != EOF)
 	{
@@ -129,7 +130,7 @@ main (int argc, char **argv)
 			ans++;
 	}
 	fclose(file);
-	file = fopen("results.txt", "w");
+	file = fopen("results.txt", "a");
 	fprintf(file, "%d\n", ans);
 	fclose(file);
     return 0;
