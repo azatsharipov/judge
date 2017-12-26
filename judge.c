@@ -7,10 +7,11 @@
 #include "check_data.c"
 #include "check_test.c"
 
-int main()
+int main(int argc, char* argv[])
 {
     FILE *file;
-    int pid, user, problem, users_amount;
+    FILE *file2;
+    int pid, user, problem, users_amount, i;
     char text[10];
     char *problem_number = NULL;
     problem_number = (char*)malloc(sizeof(char) * 2);
@@ -38,12 +39,19 @@ int main()
     check_test();
 
 //    freopen("data/info.txt", "r", stdin);
+	file2 = fopen("results.txt", "w");
+    fprintf(file2, "name   ");
+    for(i = 1; i <= atoi(argv[1]); i++)
+        fprintf(file2, "%d ", i);
+    fprintf(file2, "\n");
+    fclose(file2);
     file = fopen("data/info.txt", "r");
     fscanf(file, "%d", &users_amount);
     for(user = 1; user <= users_amount; user++)
     {
         one_string[9] = user / 10 + '0';
         one_string[10] = user + '0';
+        file = fopen("data/info.txt", "r");
         fscanf(file, "%s%s%s", text, text, text);
         problem = 1;
 //      for(problem = 1; problem <= problems_amount; problem++)
@@ -56,7 +64,7 @@ int main()
                 problem_number[1] = problem + '0';
                 one_string[12] = problem / 10 + '0';
                 one_string[13] = problem + '0';
-                execlp("./judge_unit", "./judge_unit", one_string, problem_number, NULL);
+                execlp("./judge_unit", "./judge_unit", one_string, problem_number, argv[1], NULL);
                 printf("error\n");
                 return 0;
             }
@@ -64,6 +72,10 @@ int main()
             problem++;
             fscanf(file, "%s", text);
         }
+        fclose(file);
+	    file2 = fopen("results.txt", "w");
+        fprintf(file2, "\n");
+        fclose(file2);
     }
     fclose(file);
     return 0;

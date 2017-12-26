@@ -15,6 +15,7 @@ main (int argc, char **argv)
 //    char * text = NULL;
     char text[10], result;
     int digit, ans;
+    char * name = NULL;
     char * test_number_dat = NULL;
     char * test_number_ans = NULL;
     test_number_dat = (char*)malloc(sizeof(char) * 15);
@@ -68,7 +69,13 @@ main (int argc, char **argv)
         wait(NULL);
     }
 
-
+    if(argv[2][0] == '0' && argv[2][1] == '1')
+    {
+        name = "user0x";
+        file = fopen("results.txt", "a");
+        fprintf(file, "%s ", name);
+        fclose(file);
+    }
 	file = fopen("tmp.txt", "w");
 	fprintf(file, "%d", 0);
     fclose(file);
@@ -131,7 +138,7 @@ main (int argc, char **argv)
 	}
 	fclose(file);
 	file = fopen("results.txt", "a");
-	fprintf(file, "%d\n", ans);
+	fprintf(file, "%d ", ans);
 	fclose(file);
     return 0;
 }
