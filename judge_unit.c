@@ -69,13 +69,6 @@ main (int argc, char **argv)
         wait(NULL);
     }
 
-    if(argv[2][0] == '0' && argv[2][1] == '1')
-    {
-        name = "user0x";
-        file = fopen("results.txt", "a");
-        fprintf(file, "%s ", name);
-        fclose(file);
-    }
 	file = fopen("tmp.txt", "w");
 	fprintf(file, "%d", 0);
     fclose(file);

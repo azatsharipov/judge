@@ -1,4 +1,4 @@
-void check_test()
+int check_test()
 {
     FILE * file;
 //    freopen("test/info.txt", "w", stdout);
@@ -37,4 +37,5 @@ void check_test()
         fprintf(file, "}\n");
     }
     fclose(file);
+	return problems_amount;
 }
